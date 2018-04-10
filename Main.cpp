@@ -88,6 +88,22 @@ int main(int argc, char* argv[]){
    
     cout << "Output will be saved in: "<< fOut << endl;
     */
+   
+        ifile.open(text);
+	if(!ifile){
+		cerr<<"Error: Input File not found"<<endl;
+	        exit(1);
+	}
+        while(ifile >> x){
+            a << x <<" ";
+        }
+        eOrC = a.str();
+        ifile.close();
+    
+    
+    ofile.open(fOut);
+    ofile << t;
+    ofile.close();
     
     if( eORd == "e") command =" -des-cbc -nosalt -K ";
     else command = " -des-cbc -nopad -nosalt -K ";
@@ -99,23 +115,6 @@ int main(int argc, char* argv[]){
     
     //If we're reading from file
     //(pText.substr(pText.length()-3, pText.length()) == "txt" || pText.substr(cipher.length()-3, cipher.length()) == "txt" )
-    try {
-        ifile.open(text);
-        while(ifile >> x){
-            a << x <<" ";
-        }
-        eOrC = a.str();
-        ifile.close();
-    }
-    //If text was given
-    catch (exception e){
-        cerr<<"Error:  File not found"<<endl;
-        exit(1);
-    }
-    
-    ofile.open(fOut);
-    ofile << t;
-    ofile.close();
     
     return 0;
 }//end of main
